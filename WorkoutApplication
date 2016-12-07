@@ -1,0 +1,47 @@
+package com.gymtyme.flex30;
+
+import android.app.Application;
+
+import com.gymtyme.flex30.exercises.Exercise;
+import com.gymtyme.flex30.workouts.Workout;
+
+import java.util.ArrayList;
+
+/**
+ * Created by bmg32 on 12/4/2016.
+ */
+
+public class WorkoutApplication extends Application {
+    private static ArrayList<Workout> currentWorkout;
+    public static int workoutNum = 0;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        if (null == currentWorkout) {
+            currentWorkout = new ArrayList<Workout>();
+        }
+    }
+
+    public void setCurrentWorkout(ArrayList<Workout> currentWorkout) {
+        this.currentWorkout = currentWorkout;
+    }
+
+    public ArrayList<Workout> getCurrentWorkout() {
+        return currentWorkout;
+    }
+
+
+    public void addWorkout(Workout w) {
+        assert (null != w);
+        currentWorkout.add(w);
+    }
+
+    public void setWorkoutNum(int id) {
+        this.workoutNum = id;
+    }
+
+    public ArrayList<Exercise> getCurrentExercise(){
+        return currentWorkout.get(workoutNum).getCurrentExercise();
+    }
+}
